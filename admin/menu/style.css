@@ -1,0 +1,15 @@
+.quan-menu {
+	background-color: rgba(0, 0, 0);
+}
+
+.quan-menu>h3 {
+	color: #ffffff;
+}
+
+.quan-menu>a {
+	color: #ffffff;
+}
+
+.quan-menu>a:hover {
+	text-decoration: none;
+}

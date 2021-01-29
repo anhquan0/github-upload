@@ -1,0 +1,40 @@
+.w3-container_left {
+	width: 25%;
+	float: left;
+}
+.w3-container_right {
+	width: 30%;
+	float: left;
+	text-align: right;
+}
+.w3-container_middle {
+	width: 45%;
+	float: left;
+
+}
+.active-pink-3 input[type=text] {
+  border: 1px solid #34ebc6;
+  box-shadow: 0 0 0 1px #34ebc6;
+}
+.success {
+	background-color: #23e320;
+	font-weight: bold;
+}
+.waiting {
+	background-color: #ff8a1c;
+}
+.failure {
+	background-color: #fa341e;
+	font-weight: bold;
+}
+/*.button {
+ 	
+  border: none;
+  color: white;
+  padding: 7px 11px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+}*/
