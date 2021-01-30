@@ -27,18 +27,24 @@
   </div>
 </div>
 <script type="text/javascript">
+	var check = 0;
 	function check() {
-
+		check = (check == 0)? 0: 1;
+		check_category();
+		alert(check);
+		if(check != 0) return false;
+		else return true;
 	}
+
 	function check_category() {
 		$.ajax({
 			url: 'category_check_name.php',
-			type: 'POST',
 			dataType: 'html',
 			data: {name: '$("#name")'},
 		})
 		.done(function(response) {
 			if(response != 0) alert("Category already exists");
+			check++;
 		});
 	}
 </script>

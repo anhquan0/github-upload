@@ -16,6 +16,7 @@
 				</div>
 				<div class="form-group">
 				    <label for="username"> Username </label>
+				    <span id="error_username_edit"></span>
 				    <input type="text" name="username" class="form-control" id="username" placeholder="Enter your username">
 				</div>
 				<div class="form-group">
@@ -53,10 +54,12 @@
 				</div>
 				<div class="form-group">
 					<label for="number_phone">Number Phone</label>
+					<span id="error_number_phone_edit"></span>
 					<input type="text" name="number_phone" id="number_phone" class="form-control" placeholder="Enter number phone">
 				</div>
 				<div class="form-group">
 					<label for="email">Email</label>
+					<span id="error_email_edit"></span>
 					<input type="text" name="email" id="email" class="form-control" placeholder="Enter email">
 				</div>
 				<div class="form-group">
@@ -66,14 +69,15 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-				<button type="submit" class="btn btn-primary" onclick="return check_edit()">Update</button>
-<!--  id="edit-form"	 -->			
+				<button class="btn btn-primary"">Update</button>
+<!--  id="edit-form"	 onclick="return check_edit() -->			
 			</div>
 		</form>
     </div>
   </div>
 </div>
 <script>
+var check = 0;
 	$(document).ready(function() {
 		$("#btn-toggle-password").click(function() {
 			let this_btn = $(this);
@@ -107,59 +111,61 @@
 			});
 		});
 	});
-function check_username_edit() {
-	$.ajax({
-		url: 'account_check_username.php',
-		dataType: 'html',
-		data: {
-			username: $("#username").val(),
-			ID: $("#ID").val()
-		},
-	})
-	.done(function(response) {
-		if(response != 0) {
-			alert("Username already exists");
-		} 
-		return response;
-	});
-}
-function check_email_edit() {
-	$.ajax({
-		url: 'account_check_email.php',
-		dataType: 'html',
-		data: {
-			email: $("#email").val(),
-			ID: $("#ID").val(),
-		},
-	})
-	.done(function(response) {
-		if(response != 0) {
-			alert("Email already exists");
-		}
-		return response;
-	});
-}
-function check_number_phone_edit() {
-	$.ajax({
-		url: 'account_check_number_phone.php',
-		dataType: 'html',
-		data: {
-			number_phone: $("#number_phone").val(),
-			ID: $("#ID").val()
-		},
-	})
-	.done(function(response) {
-		if(response != 0) {
-			alert("Number phone already exists");
-		}
-		return response;
-	});
-}
+// function check_username_edit() {
+// 	$.ajax({
+// 		url: 'account_check_username.php',
+// 		dataType: 'html',
+// 		data: {
+// 			username: $("#username").val(),
+// 			ID: $("#ID").val()
+// 		},
+// 	})
+// 	.done(function(response) {
+// 		if(response != 0) {
+// 			$('#error_username_edit').html("<br>Username already exists");
+// 			check++;
+// 			alert(check);
+// 		} 
+// 	});
+// }
+// function check_email_edit() {
+// 	$.ajax({
+// 		url: 'account_check_email.php',
+// 		dataType: 'html',
+// 		data: {
+// 			email: $("#email").val(),
+// 			ID: $("#ID").val(),
+// 		},
+// 	})
+// 	.done(function(response) {
+// 		if(response != 0) {
+// 			$('#error_email_edit').html("<br>Email already exists");
+// 			check++;
+// 		}
+// 	});
+// }
+// function check_number_phone_edit() {
+// 	$.ajax({
+// 		url: 'account_check_number_phone.php',
+// 		dataType: 'html',
+// 		data: {
+// 			number_phone: $("#number_phone").val(),
+// 			ID: $("#ID").val()
+// 		},
+// 	})
+// 	.done(function(response) {
+// 		if(response != 0) {
+// 			$('#error_number_phone_edit').html("<br>Number phone already exists");
+// 			check++;
+// 		}
+// 	});
+// }
 // function check_edit() {
-// 	var check = 0;
-// 	 check += check_username_edit();
-// 	 check += check_email_edit();
-// 	 check += check_number_phone_edit();
+	
+// 	check_username_edit();
+// 	check_email_edit();
+// 	check_number_phone_edit();
+// 	alert(check);
 // 	if(check != 0) {
 // 		return false;
 // 	}

@@ -15,6 +15,7 @@
 	}
 	include('../connect.php');
 	$sql = "insert into account(name, username, password, level, date_of_birth, gender, email, number_phone, address) values('$name', '$username', '$password', '$level', '$date_of_birth', '$gender', '$email', '$number_phone', '$address')";
+	// die($sql);
 	mysqli_query($connect, $sql);
 	include('../disconnect.php');
 	$_SESSION['name'] = $name;

@@ -14,7 +14,7 @@
 		<form action="producer_insert_process.php" method="post">
 			<div class="modal-body">
 				<div class="form-group">
-				    <label for="name<?php echo $ID ?>"> Name</label>
+				    <label for="name"> Name</label>
 				    <input type="text" name="name" class="form-control" id="name<?php echo $ID ?>" placeholder="Enter producer name">
 				  </div>
 			</div>

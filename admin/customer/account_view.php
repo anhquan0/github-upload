@@ -41,7 +41,6 @@
 			<th>Username</th>
 			<th>Level</th>
 			<th>Update</th>
-			<th>Delete</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -70,7 +69,6 @@
 				</td>
 
 				<td><?php include('account_edit.php') ?></td>
-				<td><?php include('account_delete.php') ?></td>
 		<?php endforeach ?>
 	</tbody>
 </table>

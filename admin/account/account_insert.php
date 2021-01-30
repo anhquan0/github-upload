@@ -11,13 +11,13 @@
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
- 		<form action="account_insert_process.php" id="insert_form">
+ 		<form action="account_insert_process.php" method="POST" id="insert_form">
 			<div class="modal-body">
 				<div class="form-group">
 					<label for="name0">Name</label><span id="error_name"></span>
 					<input type="text" name="name" class="form-control" id = "name0" placeholder="Enter full name">
 				    <label for="username0">Username</label><span id="error_username"></span>
-				    <input type="text" name="username" class="form-control" id="username0" placeholder="Enter username">
+				    <input type="text" name="username" class="form-control" id="username0" placeholder="Enter username" required>
 				    <label for="password0">Password</label><span id="error_password"></span>
 				    <input type="password" name="password" class="form-control" id="password0" placeholder="Enter password">
 				    <br>
@@ -68,8 +68,9 @@
 </div>
 
 <script>
-function check() {
 	var check_error = 0;
+function check() {
+	if(check_error != 0) check_error = 0;
 	var name = document.getElementById('name0').value;
 	var username = document.getElementById('username0').value;
 	var p = document.getElementById('password0').value;
@@ -79,6 +80,9 @@ function check() {
 	var regex_name =/^(?:[A-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪ][a-zàáâãèéêếìíòóôõùúăđĩũơưăạảấầẩẫậắằẳẵặẹẻẽềềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]{1,6}\s?)+$/;
 	var regex_password = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 	var regex_email =  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	check_username();
+	check_email();
+	check_number_phone();
 	if(name == '' || !regex_name.test(name)) {
 		check_error++;
 		if(name == '')
@@ -105,9 +109,7 @@ function check() {
 		check_error++;
 		document.getElementById('error_email').innerHTML = "<br>[Email doesn't match]";
 	}
-	 check_error += check_username();
-	 check_error += check_email();
-	 check_error += check_number_phone();
+
 	if(check_error!=0){
 		return false;
 	}
@@ -115,7 +117,6 @@ function check() {
 }
 
 function check_username() {
-	var feedback = 0;
 	$.ajax({
 		url: 'account_check_username.php',
 		dataType: 'html',
@@ -125,14 +126,15 @@ function check_username() {
 		if(response != 0) {
 			$('#error_username').html("<br>[Username already exists]");
 			// $('#error_username').html(response);
-			feedback = response;
+			check_error++;
 		} 
+		else $('#error_username').html("");
 	});
-	return feedback;
 }
 
+
 function check_email() {
-	var feedback = 0;
+
 	$.ajax({
 		url: 'account_check_email.php',
 		dataType: 'html',
@@ -142,14 +144,12 @@ function check_email() {
 	.done(function(response) {
 		if(response != 0) {
 			$('#error_email').html("<br>[Email already exists]");
-			
-		} 
-		feedback = response;
-	return feedback;
+			check_error++;
+		}
+		else  $('#error_email').html("");
 	});
 }
 function check_number_phone() {
-	var feedback = 0;
 	$.ajax({
 		url: 'account_check_number_phone.php',
 		dataType: 'html',
@@ -158,11 +158,10 @@ function check_number_phone() {
 	.done(function(response) {
 		if(response != 0) {
 			$('#error_number_phone').html("<br>[Number phone already exists]");
+			check_error++;
 		} 
-		feedback = response;
-
+		else $('#error_number_phone').html("");
 	});
-	return 	feedback;	
 }
 
 </script>
